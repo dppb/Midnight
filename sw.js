@@ -1,11 +1,11 @@
-/* OS-v2 service worker: shows notifications sent by your Supabase project, and opens the app when tapped.
+/* Hornbill service worker: shows notifications sent by your Supabase project, and opens the app when tapped.
    It caches nothing and reads nothing; it only wakes up for notifications. */
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 self.addEventListener('push', function (e) {
   var d = {};
-  try { d = e.data ? e.data.json() : {}; } catch (err) { d = { title: 'OS-v2', body: e.data ? e.data.text() : '' }; }
-  e.waitUntil(self.registration.showNotification(d.title || 'OS-v2', {
+  try { d = e.data ? e.data.json() : {}; } catch (err) { d = { title: 'Hornbill', body: e.data ? e.data.text() : '' }; }
+  e.waitUntil(self.registration.showNotification(d.title || 'Hornbill', {
     body: d.body || '', tag: d.tag || undefined, icon: 'icon-192.png', badge: 'icon-192.png',
     data: { url: self.registration.scope }
   }));
